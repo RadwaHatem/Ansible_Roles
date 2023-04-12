@@ -2,6 +2,7 @@
   apt:
     name: "{{ package_name }}"
     state: "{{ package_state }}"
+  register: my_register
   
 - name: Copy files using loops
   copy:
@@ -11,12 +12,12 @@
   with_fileglob:
       - "./Roles/web_server/files/*"
   notify: new_handler
-  when: install_task.changed
+  when: my_register.changed
 
 - name: Trying Templates
-    template:
-      src: index.html.j2
-      dest: /var/www/html/index.html
+  template:
+    src: index.html.j2
+    dest: /var/www/html/index.html
   
 
   
