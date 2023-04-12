@@ -1,0 +1,5 @@
+- name: playOfRoles
+  hosts: all
+
+  roles:
+    - web_server 
