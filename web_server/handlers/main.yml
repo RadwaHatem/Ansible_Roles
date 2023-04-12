@@ -1,0 +1,4 @@
+- name: new_handler
+  service:
+    name: nginx
+    state: restarted

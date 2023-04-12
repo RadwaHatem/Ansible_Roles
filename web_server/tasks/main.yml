@@ -1,0 +1,26 @@
+- name: install_task
+  apt:
+    name: "{{ package_name }}"
+    state: "{{ package_state }}"
+  
+- name: Copy files using loops
+  copy:
+    src: "{{ item }}"
+    dest: "/home/ansible/"
+    mode: 0644
+  with_fileglob:
+      - "./Roles/web_server/files/*"
+  notify: new_handler
+  when: install_task.changed
+
+- name: Trying Templates
+    template:
+      src: index.html.j2
+      dest: /var/www/html/index.html
+  
+
+  
+ 
+      
+
+  
